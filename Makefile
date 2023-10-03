@@ -18,4 +18,4 @@ buildc_standalone:
 	$(CC) $(CFLAGS) -o lslodin.o ./src/lslodin.c -llsl -L$(LSLLIB) -I$(INCLUDES)
 
 clean:
-	rm -rf lslodin.o liblslodin.a testlsl
+	rm -rf lslodin.o liblslodin.a testlsl src/lslodin.o include/lslodin.o include/liblslodin.a

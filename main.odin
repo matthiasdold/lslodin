@@ -14,10 +14,10 @@ import SDL_TTF "vendor:sdl2/ttf"
 foreign import lslodin "./include/liblslodin.a"
 
 foreign lslodin {
-	lslodin_create_lsloutlet_struct :: proc(name: string) -> c.int ---
-	lslodin_send_lslmarker_left :: proc(handle_ptr_i: c.int) -> c.int ---
-	lslodin_send_lslmarker_right :: proc(handle_ptr_i: c.int) -> c.int ---
-	lslodin_free_lsloutlet_struct :: proc(handle_ptr_i: c.int) ---
+	lslodin_create_lsloutlet :: proc(name: string) -> rawptr ---
+	lslodin_send_lslmarker_left :: proc(handle: rawptr) -> c.int ---
+	lslodin_send_lslmarker_right :: proc(handle: rawptr) -> c.int ---
+	lslodin_free_lsloutlet :: proc(handle: rawptr) ---
 }
 
 // Create a window to be closer to the real application in terms of load
@@ -57,7 +57,8 @@ main :: proc() {
 	init_sdl()
 	defer clean_sdl()
 
-	lslhandle := lslodin_create_lsloutlet_struct("StroopParadigmMarkerStream")
+	lslhandle := lslodin_create_lsloutlet("StroopParadigmMarkerStream")
+	defer lslodin_free_lsloutlet(lslhandle)
 
 	process_keypress(lslhandle)
 
@@ -89,7 +90,7 @@ init_sdl :: proc() {
 	assert(ctx.renderer != nil, SDL.GetErrorString())
 }
 
-process_keypress :: proc(lslhandle: c.int) -> string {
+process_keypress :: proc(lslhandle: rawptr) -> string {
 	resp: string = "timeout"
 	response_loop: for {
 		event: SDL.Event
