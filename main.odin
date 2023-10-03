@@ -15,8 +15,8 @@ foreign import lslodin "./include/liblslodin.a"
 
 foreign lslodin {
 	lslodin_create_lsloutlet_struct :: proc(name: string) -> c.int ---
-	lslodin_send_lslmarker_left :: proc(handle_ptr_i: c.int) -> int ---
-	lslodin_send_lslmarker_right :: proc(handle_ptr_i: c.int) -> int ---
+	lslodin_send_lslmarker_left :: proc(handle_ptr_i: c.int) -> c.int ---
+	lslodin_send_lslmarker_right :: proc(handle_ptr_i: c.int) -> c.int ---
 	lslodin_free_lsloutlet_struct :: proc(handle_ptr_i: c.int) ---
 }
 
