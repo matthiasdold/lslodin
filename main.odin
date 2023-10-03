@@ -99,9 +99,11 @@ process_keypress :: proc(lslhandle: c.int) -> string {
 				#partial switch event.key.keysym.sym {
 				case .LEFT:
 					resp = "left"
+					fmt.printf("O - left\n")
 					lslodin_send_lslmarker_left(lslhandle)
 				case .RIGHT:
 					resp = "right"
+					fmt.printf("O - right\n")
 					lslodin_send_lslmarker_right(lslhandle)
 				case .ESCAPE:
 					resp = "quit"

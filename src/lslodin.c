@@ -25,6 +25,10 @@ void sleep_(int ms) { usleep(ms * 1000); }
 typedef struct {
   lsl_outlet outlet;
 } lsloutlet_struct;
+
+const char *leftmrk = "LEFT";
+const char *rightmrk = "LEFT";
+
 /*
  * Create a mytype struct but return a simple in representation of the pointer
  */
@@ -44,16 +48,16 @@ intptr_t lslodin_create_lsloutlet_struct(char *name) {
 }
 
 int32_t lslodin_send_lslmarker_left(intptr_t handle) {
+  printf("C LEFT\n");
   lsloutlet_struct *lsl = (lsloutlet_struct *)handle;
-  const char *mrk = "LEFT";
-  lsl_push_sample_str(lsl->outlet, &mrk);
+  lsl_push_sample_str(lsl->outlet, &leftmrk);
   return 0;
 }
 
 int32_t lslodin_send_lslmarker_right(intptr_t handle) {
+  printf("C RIGHT\n");
   lsloutlet_struct *lsl = (lsloutlet_struct *)handle;
-  const char *mrk = "RIGHT";
-  lsl_push_sample_str(lsl->outlet, &mrk);
+  lsl_push_sample_str(lsl->outlet, &rightmrk);
   return 0;
 }
 
@@ -62,7 +66,7 @@ void lslodin_free_lsloutlet_struct(intptr_t handle) {
   free(lsl);
 }
 
-int main(int argc, char *argv[]) {
+int main_test(int argc, char *argv[]) {
   printf("Running main");
   intptr_t handle = lslodin_create_lsloutlet_struct("LSLODIN");
   sleep_(500);
