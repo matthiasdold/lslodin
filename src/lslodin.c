@@ -18,8 +18,6 @@ void *lslodin_create_lsloutlet(char *name) {
 
   lsl_outlet outlet = lsl_create_outlet(info, 0, 360);
 
-  printf("Passing out %p\n", outlet);
-
   return outlet;
 }
 

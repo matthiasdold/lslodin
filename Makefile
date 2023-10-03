@@ -5,7 +5,7 @@ INCLUDES = ./include
 
 
 run:
-	odin run . -extra-linker-flags:"-L/opt/homebrew/lib -llsl"
+	odin run . -extra-linker-flags:"-L$(LSLLIB) -llsl"
 
 buildc:
 	echo "Building shared object from C code"
