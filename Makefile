@@ -10,7 +10,8 @@ INCLUDES = ./include
 .PHONY: run buildc buildc_standalone clean
 
 run:
-	odin run . -extra-linker-flags:"-L$(LSLLIB) -llsl"
+	odin run . --extra-linker-flags:"/LIBPATH ./lib/lsl.lib"
+	# odin run . -extra-linker-flags:"-L$(LSLLIB) -llsl"
 
 buildc:
 	@echo "Building shared object from C code"
@@ -23,4 +24,4 @@ buildc_standalone:
 	$(CC) $(CFLAGS) -o lslodin.exe ./src/lslodin.c -llsl -L$(LSLLIB) -I$(INCLUDES) -I./lib/
 
 clean:
-	rm -rf lslodin.o liblslodin.a lslodin.exe src/lslodin.o include/lslodin.o include/liblslodin.a
+	rm -rf lslodin.o lslodin.obj lslodin.exe src/lslodin.o include/lslodin.o include/liblslodin.a

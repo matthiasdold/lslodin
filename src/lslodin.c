@@ -34,7 +34,8 @@ int lslodin_send_lslmarker_right(lsl_outlet lsl) {
 
 void lslodin_free_lsloutlet(lsl_outlet outlet) { lsl_destroy_outlet(outlet); }
 
-int main(){
-  printf("Hello World");
-  return 0;
-}
+/* Use for testing */
+/* int main(){ */
+/*   printf("Hello World"); */
+/*   return 0; */
+/* } */

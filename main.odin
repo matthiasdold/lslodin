@@ -12,7 +12,7 @@ import SDL_TTF "vendor:sdl2/ttf"
 
 
 // foreign import lslodin "./include/liblslodin.a"
-foreign import lslodin "./include/lslodin.lib"
+foreign import lslodin "./lib/lslodin.lib"
 
 foreign lslodin {
 	lslodin_create_lsloutlet :: proc(name: string) -> rawptr ---
@@ -52,20 +52,6 @@ ctx := CTX {
 	font_size = 64,
 }
 
-main :: proc() {
-	// use a filelogger alongside console
-
-	init_sdl()
-	defer clean_sdl()
-
-	lslhandle := lslodin_create_lsloutlet("StroopParadigmMarkerStream")
-	defer lslodin_free_lsloutlet(lslhandle)
-
-	process_keypress(lslhandle)
-
-	// high precision timer
-	start_tick := time.tick_now()
-}
 
 init_sdl :: proc() {
 	SDL.Init({.VIDEO})
@@ -125,4 +111,20 @@ clean_sdl :: proc() {
 	SDL_TTF.Quit()
 	SDL.DestroyWindow(ctx.window)
 	SDL.DestroyRenderer(ctx.renderer)
+}
+
+main :: proc() {
+	fmt.println("Starting STROOP demo")
+	// use a filelogger alongside console
+
+	init_sdl()
+	defer clean_sdl()
+
+	lslhandle := lslodin_create_lsloutlet("StroopParadigmMarkerStream")
+	defer lslodin_free_lsloutlet(lslhandle)
+
+	process_keypress(lslhandle)
+
+	// high precision timer
+	start_tick := time.tick_now()
 }
