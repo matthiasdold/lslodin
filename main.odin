@@ -11,7 +11,8 @@ import SDL "vendor:sdl2"
 import SDL_TTF "vendor:sdl2/ttf"
 
 
-foreign import lslodin "./include/liblslodin.a"
+// foreign import lslodin "./include/liblslodin.a"
+foreign import lslodin "./include/lslodin.lib"
 
 foreign lslodin {
 	lslodin_create_lsloutlet :: proc(name: string) -> rawptr ---

@@ -1,6 +1,6 @@
 // Starting out from the StreamData example at:
 // https://github.com/sccn/liblsl/blob/master/examples/SendDataC.c
-#include "../include/lsl_c.h"
+#include "lsl_c.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,3 +33,8 @@ int lslodin_send_lslmarker_right(lsl_outlet lsl) {
 }
 
 void lslodin_free_lsloutlet(lsl_outlet outlet) { lsl_destroy_outlet(outlet); }
+
+int main(){
+  printf("Hello World");
+  return 0;
+}
